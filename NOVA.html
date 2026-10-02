@@ -1,0 +1,1485 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NOVA — Future Starts Here</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #080b14;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: #6c4cff;
+            filter: blur(180px);
+            opacity: .22;
+            top: -150px;
+            left: -150px;
+            z-index: -1;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 450px;
+            height: 450px;
+            background: #00d9ff;
+            filter: blur(180px);
+            opacity: .15;
+            bottom: -150px;
+            right: -100px;
+            z-index: -1;
+        }
+
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(8, 11, 20, .75);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,.08);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            color: #8f7aff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #ddd;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: #8f7aff;
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 130px 20px 80px;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            animation: fadeUp 1s ease;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 9px 18px;
+            border: 1px solid rgba(143,122,255,.6);
+            border-radius: 50px;
+            color: #b8adff;
+            background: rgba(143,122,255,.08);
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-size: clamp(55px, 9vw, 105px);
+            line-height: .95;
+            margin-bottom: 25px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #8f7aff,
+                    #00d9ff
+                );
+
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            max-width: 680px;
+            margin: auto;
+            color: #aaa;
+            font-size: 19px;
+            line-height: 1.7;
+        }
+
+        .buttons {
+            margin-top: 35px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: .3s;
+        }
+
+        .primary {
+            background:
+                linear-gradient(
+                    90deg,
+                    #6c4cff,
+                    #00bfff
+                );
+
+            color: white;
+
+            box-shadow:
+                0 0 30px rgba(108,76,255,.3);
+        }
+
+        .secondary {
+            border: 1px solid #444;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px) scale(1.03);
+        }
+
+
+        /* =========================
+           GENERAL SECTIONS
+        ========================= */
+
+        section {
+            padding: 110px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 55px;
+        }
+
+        .section-title span {
+            color: #8f7aff;
+        }
+
+
+        /* =========================
+           FEATURES
+        ========================= */
+
+        .cards {
+            max-width: 1100px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+        .card {
+            padding: 35px;
+
+            background:
+                rgba(255,255,255,.04);
+
+            border:
+                1px solid rgba(255,255,255,.08);
+
+            border-radius: 20px;
+
+            transition: .4s;
+
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+
+            border-color: #8f7aff;
+
+            box-shadow:
+                0 20px 45px
+                rgba(108,76,255,.15);
+        }
+
+        .icon {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 23px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #999;
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .about p {
+            color: #aaa;
+            font-size: 19px;
+            line-height: 1.9;
+        }
+
+
+        /* =========================
+           SERVICES
+        ========================= */
+
+        .services {
+            max-width: 1100px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 25px;
+        }
+
+        .service {
+            padding: 30px;
+            background: #101421;
+            border-radius: 18px;
+            border: 1px solid #20283a;
+            transition: .3s;
+        }
+
+        .service:hover {
+            border-color: #6c4cff;
+            transform: translateY(-5px);
+        }
+
+        .service h3 {
+            margin-bottom: 10px;
+        }
+
+        .service p {
+            color: #999;
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           STATISTICS
+        ========================= */
+
+        .stats {
+            max-width: 1000px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+
+            text-align: center;
+        }
+
+        .stat {
+            padding: 30px;
+
+            background:
+                rgba(255,255,255,.04);
+
+            border-radius: 18px;
+        }
+
+        .stat h2 {
+            font-size: 40px;
+            color: #8f7aff;
+            margin-bottom: 8px;
+        }
+
+        .stat p {
+            color: #888;
+        }
+
+
+        /* =========================
+           TEAM
+        ========================= */
+
+        .team {
+            max-width: 1000px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+        .member {
+            text-align: center;
+            padding: 30px;
+            background: #101421;
+            border-radius: 20px;
+            border: 1px solid #20283a;
+        }
+
+        .avatar {
+            width: 90px;
+            height: 90px;
+            margin: auto auto 20px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 35px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6c4cff,
+                    #00c8ff
+                );
+        }
+
+        .member p {
+            color: #888;
+            margin-top: 8px;
+        }
+
+
+        /* =========================
+           TESTIMONIALS
+        ========================= */
+
+        .quotes {
+            max-width: 1000px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+        .quote {
+            padding: 30px;
+
+            background:
+                rgba(255,255,255,.04);
+
+            border-radius: 18px;
+
+            border: 1px solid #222a3d;
+        }
+
+        .quote p {
+            color: #aaa;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .quote strong {
+            color: #8f7aff;
+        }
+
+
+        /* =========================
+           FAQ
+        ========================= */
+
+        .faq {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        details {
+            background: #101421;
+
+            border: 1px solid #242c40;
+
+            border-radius: 12px;
+
+            margin-bottom: 12px;
+
+            padding: 20px;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        details p {
+            color: #999;
+            margin-top: 15px;
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact input,
+        .contact textarea {
+
+            width: 100%;
+
+            padding: 16px;
+
+            border-radius: 10px;
+
+            border: 1px solid #2a3248;
+
+            background: #101421;
+
+            color: white;
+
+            outline: none;
+
+            font-size: 16px;
+        }
+
+        .contact textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .contact input:focus,
+        .contact textarea:focus {
+            border-color: #8f7aff;
+        }
+
+        .contact button {
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            text-align: center;
+
+            padding: 45px;
+
+            border-top:
+                1px solid rgba(255,255,255,.08);
+
+            color: #777;
+        }
+
+
+        /* =========================
+           BACK TO TOP
+        ========================= */
+
+        #topBtn {
+
+            position: fixed;
+
+            bottom: 25px;
+            right: 25px;
+
+            width: 50px;
+            height: 50px;
+
+            border-radius: 50%;
+
+            border: none;
+
+            background: #6c4cff;
+
+            color: white;
+
+            font-size: 20px;
+
+            cursor: pointer;
+
+            display: none;
+
+            z-index: 999;
+        }
+
+
+        /* =========================
+           ANIMATION
+        ========================= */
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media(max-width: 800px) {
+
+            nav {
+                padding: 18px 6%;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            nav ul {
+
+                position: absolute;
+
+                top: 70px;
+
+                left: 0;
+
+                width: 100%;
+
+                flex-direction: column;
+
+                align-items: center;
+
+                gap: 0;
+
+                background: #080b14;
+
+                max-height: 0;
+
+                overflow: hidden;
+
+                transition: .4s;
+            }
+
+            nav ul.active {
+                max-height: 300px;
+            }
+
+            nav li {
+                padding: 18px;
+            }
+
+            .cards,
+            .team,
+            .quotes {
+                grid-template-columns: 1fr;
+            }
+
+            .services {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            section {
+                padding: 80px 6%;
+            }
+
+            .hero h1 {
+                font-size: 55px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav>
+
+    <div class="logo">
+        NOVA
+    </div>
+
+    <div class="menu-btn" id="menuBtn">
+        ☰
+    </div>
+
+    <ul id="navLinks">
+
+        <li>
+            <a href="#home">Home</a>
+        </li>
+
+        <li>
+            <a href="#features">Features</a>
+        </li>
+
+        <li>
+            <a href="#about">About</a>
+        </li>
+
+        <li>
+            <a href="#services">Services</a>
+        </li>
+
+        <li>
+            <a href="#contact">Contact</a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="tag">
+            ✦ WELCOME TO THE FUTURE
+        </div>
+
+        <h1>
+            Build Something Amazing.
+        </h1>
+
+        <p>
+            Explore a modern digital experience built
+            for creators, innovators and people who want
+            to turn their ideas into reality.
+        </p>
+
+        <div class="buttons">
+
+            <a
+                href="#features"
+                class="btn primary">
+                Explore More →
+            </a>
+
+            <a
+                href="#contact"
+                class="btn secondary">
+                Get Started
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     FEATURES
+========================= -->
+
+<section id="features">
+
+    <h2 class="section-title">
+        Powerful <span>Features</span>
+    </h2>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="icon">⚡</div>
+
+            <h3>
+                Lightning Fast
+            </h3>
+
+            <p>
+                Lightweight and optimized so your
+                website feels fast and smooth.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🎨</div>
+
+            <h3>
+                Beautiful Design
+            </h3>
+
+            <p>
+                Modern gradients, glass effects
+                and smooth animations.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">📱</div>
+
+            <h3>
+                Fully Responsive
+            </h3>
+
+            <p>
+                Works beautifully on phones,
+                tablets and computers.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🔒</div>
+
+            <h3>
+                Secure
+            </h3>
+
+            <p>
+                Designed with modern web development
+                practices in mind.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🚀</div>
+
+            <h3>
+                Scalable
+            </h3>
+
+            <p>
+                Start small and expand your website
+                as your project grows.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🌎</div>
+
+            <h3>
+                Global
+            </h3>
+
+            <p>
+                Create experiences that people
+                can access from anywhere.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section id="about">
+
+    <div class="about">
+
+        <h2 class="section-title">
+            About <span>NOVA</span>
+        </h2>
+
+        <p>
+            NOVA is a futuristic website concept designed
+            to demonstrate what can be built with HTML,
+            CSS and JavaScript. You can customize every
+            part of it and turn it into your own website,
+            portfolio, business or project.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     SERVICES
+========================= -->
+
+<section id="services">
+
+    <h2 class="section-title">
+        What We <span>Do</span>
+    </h2>
+
+    <div class="services">
+
+        <div class="service">
+
+            <h3>
+                💻 Web Development
+            </h3>
+
+            <p>
+                Build modern, responsive websites
+                that work across different devices.
+            </p>
+
+        </div>
+
+
+        <div class="service">
+
+            <h3>
+                🎨 UI Design
+            </h3>
+
+            <p>
+                Create beautiful interfaces with
+                modern layouts and visual effects.
+            </p>
+
+        </div>
+
+
+        <div class="service">
+
+            <h3>
+                ⚙️ Custom Solutions
+            </h3>
+
+            <p>
+                Develop unique features designed
+                specifically for your project.
+            </p>
+
+        </div>
+
+
+        <div class="service">
+
+            <h3>
+                🚀 Performance
+            </h3>
+
+            <p>
+                Optimize websites for speed,
+                usability and responsiveness.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     STATISTICS
+========================= -->
+
+<section>
+
+    <h2 class="section-title">
+        NOVA By The <span>Numbers</span>
+    </h2>
+
+    <div class="stats">
+
+        <div class="stat">
+
+            <h2>
+                99%
+            </h2>
+
+            <p>
+                Performance
+            </p>
+
+        </div>
+
+
+        <div class="stat">
+
+            <h2>
+                24/7
+            </h2>
+
+            <p>
+                Availability
+            </p>
+
+        </div>
+
+
+        <div class="stat">
+
+            <h2>
+                100+
+            </h2>
+
+            <p>
+                Projects
+            </p>
+
+        </div>
+
+
+        <div class="stat">
+
+            <h2>
+                50K+
+            </h2>
+
+            <p>
+                Users
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     TEAM
+========================= -->
+
+<section>
+
+    <h2 class="section-title">
+        Meet The <span>Team</span>
+    </h2>
+
+    <div class="team">
+
+        <div class="member">
+
+            <div class="avatar">
+                👨‍💻
+            </div>
+
+            <h3>
+                Alex
+            </h3>
+
+            <p>
+                Lead Developer
+            </p>
+
+        </div>
+
+
+        <div class="member">
+
+            <div class="avatar">
+                👩‍🎨
+            </div>
+
+            <h3>
+                Maya
+            </h3>
+
+            <p>
+                UI Designer
+            </p>
+
+        </div>
+
+
+        <div class="member">
+
+            <div class="avatar">
+                🧑‍🚀
+            </div>
+
+            <h3>
+                Ryan
+            </h3>
+
+            <p>
+                Project Manager
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     TESTIMONIALS
+========================= -->
+
+<section>
+
+    <h2 class="section-title">
+        What People <span>Say</span>
+    </h2>
+
+    <div class="quotes">
+
+        <div class="quote">
+
+            <p>
+                "The design looks incredibly modern
+                and works perfectly on my phone."
+            </p>
+
+            <strong>
+                — Jordan
+            </strong>
+
+        </div>
+
+
+        <div class="quote">
+
+            <p>
+                "I love how simple it is to customize
+                the website."
+            </p>
+
+            <strong>
+                — Sam
+            </strong>
+
+        </div>
+
+
+        <div class="quote">
+
+            <p>
+                "The animations make the website
+                feel much more alive."
+            </p>
+
+            <strong>
+                — Chris
+            </strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     FAQ
+========================= -->
+
+<section>
+
+    <h2 class="section-title">
+        Frequently Asked <span>Questions</span>
+    </h2>
+
+    <div class="faq">
+
+        <details>
+
+            <summary>
+                Is NOVA responsive?
+            </summary>
+
+            <p>
+                Yes. The layout automatically adapts
+                to desktop, tablet and mobile screens.
+            </p>
+
+        </details>
+
+
+        <details>
+
+            <summary>
+                Can I change the colors?
+            </summary>
+
+            <p>
+                Yes. You can change the colors,
+                fonts, text, buttons and almost
+                every part of the design.
+            </p>
+
+        </details>
+
+
+        <details>
+
+            <summary>
+                Do I need a server?
+            </summary>
+
+            <p>
+                No. The basic website can run directly
+                from an HTML file on your computer.
+            </p>
+
+        </details>
+
+
+        <details>
+
+            <summary>
+                Can I add my own images?
+            </summary>
+
+            <p>
+                Yes. You can add images, videos,
+                logos and other content.
+            </p>
+
+        </details>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section id="contact">
+
+    <h2 class="section-title">
+        Get In <span>Touch</span>
+    </h2>
+
+    <div class="contact">
+
+        <!-- FORMspree email form -->
+
+        <form
+            action="https://formspree.io/f/xaenzrlv"
+            method="POST">
+
+            <input
+                type="text"
+                name="name"
+                placeholder="Your Name"
+                required
+            >
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                required
+            >
+
+            <textarea
+                name="message"
+                placeholder="Your Message"
+                required></textarea>
+
+            <button
+                type="submit"
+                class="btn primary">
+
+                Send Message 🚀
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <h3>
+        NOVA
+    </h3>
+
+    <br>
+
+    Building the future, one idea at a time.
+
+    <br><br>
+
+    © 2026 NOVA. All rights reserved.
+
+</footer>
+
+
+
+<!-- BACK TO TOP -->
+
+<button id="topBtn">
+    ↑
+</button>
+
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+const menuBtn =
+    document.getElementById("menuBtn");
+
+const navLinks =
+    document.getElementById("navLinks");
+
+
+menuBtn.addEventListener(
+    "click",
+    () => {
+
+        navLinks.classList.toggle("active");
+
+        menuBtn.textContent =
+            navLinks.classList.contains("active")
+            ? "✕"
+            : "☰";
+
+    }
+);
+
+
+/* CLOSE MOBILE MENU */
+
+document
+    .querySelectorAll("#navLinks a")
+    .forEach(link => {
+
+        link.addEventListener(
+            "click",
+            () => {
+
+                navLinks.classList.remove(
+                    "active"
+                );
+
+                menuBtn.textContent = "☰";
+
+            }
+        );
+
+    });
+
+
+
+/* =========================
+   CARD SCROLL ANIMATION
+========================= */
+
+const cards =
+    document.querySelectorAll(".card");
+
+
+function showCards() {
+
+    cards.forEach(card => {
+
+        const position =
+            card.getBoundingClientRect().top;
+
+        if (
+            position <
+            window.innerHeight - 100
+        ) {
+
+            card.classList.add("show");
+
+        }
+
+    });
+
+}
+
+
+window.addEventListener(
+    "scroll",
+    showCards
+);
+
+showCards();
+
+
+
+/* =========================
+   BACK TO TOP
+========================= */
+
+const topBtn =
+    document.getElementById("topBtn");
+
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+        if (window.scrollY > 500) {
+
+            topBtn.style.display =
+                "block";
+
+        } else {
+
+            topBtn.style.display =
+                "none";
+
+        }
+
+    }
+);
+
+
+topBtn.addEventListener(
+    "click",
+    () => {
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+);
+
+
+</script>
+
+
+</body>
+
+</html>
+```
